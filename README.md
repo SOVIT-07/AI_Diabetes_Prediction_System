@@ -454,7 +454,11 @@ outputs/
 ├── roc_curve.png
 ├── classification_report.txt
 ├── feature_importance.csv
-└── threshold_analysis.csv
+├── threshold_analysis.csv
+├── model_comparison.csv
+├── shap_feature_importance.csv
+├── shap_feature_importance.png
+└── shap_summary.png
 ```
 
 ---
@@ -465,12 +469,14 @@ outputs/
 AI_Diabetes_Prediction_System/
 │
 ├── data/
-│   └── diabetes_binary_health.csv
+│   ├── diabetes_binary_health.csv
+│   └── README.md
 │
 ├── models/
-│   └── diabetes_model.joblib
+│   └── .gitkeep
 │
 ├── notebooks/
+│   └── .gitkeep
 │
 ├── outputs/
 │   ├── diabetes_distribution.png
@@ -481,23 +487,35 @@ AI_Diabetes_Prediction_System/
 │   ├── roc_curve.png
 │   ├── classification_report.txt
 │   ├── feature_importance.csv
-│   └── threshold_analysis.csv
+│   ├── threshold_analysis.csv
+│   ├── model_comparison.csv
+│   ├── shap_feature_importance.csv
+│   ├── shap_feature_importance.png
+│   └── shap_summary.png
+│
+├── screenshots/
+│   ├── prediction-form.png
+│   └── prediction-result.png
 │
 ├── src/
 │   ├── __init__.py
 │   ├── data_preprocessing.py
 │   ├── eda.py
 │   ├── evaluate.py
+│   ├── explainability.py
+│   ├── model_comparison.py
 │   ├── predict.py
 │   ├── test_prediction.py
 │   ├── threshold_analysis.py
 │   └── train.py
 │
 ├── static/
-│   └── style.css
+│   ├── style.css
+│   └── diabetes-banner.png
 │
 ├── templates/
-│   └── index.html
+│   ├── index.html
+│   └── result.html
 │
 ├── app.py
 ├── train_model.py
@@ -517,7 +535,7 @@ AI_Diabetes_Prediction_System/
 After publishing the repository:
 
 ```bash
-git clone <your-github-repository-url>
+git clone https://github.com/SOVIT-07/AI_Diabetes_Prediction_System.git
 cd AI_Diabetes_Prediction_System
 ```
 
@@ -656,6 +674,7 @@ This verifies that the saved model, scaler, feature order, and prediction pipeli
 | Pandas | Data processing |
 | NumPy | Numerical operations |
 | Joblib | Model serialization |
+| SHAP | Explainable AI |
 | Matplotlib | Visualization |
 | Seaborn | Statistical visualization |
 | HTML5 | User interface |
