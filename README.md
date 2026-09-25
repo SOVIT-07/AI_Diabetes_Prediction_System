@@ -1,4 +1,8 @@
 <p align="center">
+  <img src="static/diabetes-banner.png" alt="AI-Based Diabetes Prediction System Banner" width="100%">
+</p>
+
+<p align="center">
   <b>🩺 AI-Based Diabetes Prediction System</b><br>
   <sub>Machine Learning • Healthcare Analytics • Flask Web Application</sub>
 </p>
