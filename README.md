@@ -261,15 +261,47 @@ The model is trained using the cleaned dataset and saved together with the scale
 
 # 📈 Model Performance
 
-Current held-out test-set results:
+The project evaluates multiple supervised Machine Learning algorithms using the same cleaned dataset and stratified 80/20 train/test split.
 
-| Metric | Score |
-|---|---:|
-| Accuracy | **84.39%** |
-| Precision | **46.79%** |
-| Recall | **14.85%** |
-| F1-Score | **22.54%** |
-| ROC-AUC | **78.17%** |
+The models compared are:
+
+- Logistic Regression
+- Decision Tree
+- Random Forest
+
+The comparison uses:
+
+- Accuracy
+- Precision
+- Recall
+- F1-Score
+- ROC-AUC
+
+## Model Comparison
+
+| Model | Accuracy | Precision | Recall | F1-Score | ROC-AUC |
+|---|---:|---:|---:|---:|---:|
+| Logistic Regression | 71.43% | 31.83% | **76.01%** | **44.87%** | **81.06%** |
+| Random Forest | **84.39%** | **46.79%** | 14.85% | 22.54% | 78.17% |
+| Decision Tree | 77.71% | 27.61% | 28.21% | 27.91% | 57.50% |
+
+### Model Comparison Analysis
+
+The experiment demonstrates a trade-off between the different evaluation metrics.
+
+- Random Forest produced the highest accuracy and precision among the three models in this experiment.
+- Logistic Regression produced substantially higher recall for the diabetic class and the highest ROC-AUC.
+- Decision Tree produced lower overall performance on the evaluated metrics compared with the other two models.
+
+The current Flask application uses the **Random Forest model**.
+
+> The model-comparison metrics above use the standard 0.50 classification threshold. The Flask application separately uses a 0.25 probability threshold based on the project's threshold-analysis experiment.
+
+The complete comparison results are stored in:
+
+```text
+outputs/model_comparison.csv
+```
 
 ### Classification Report
 
