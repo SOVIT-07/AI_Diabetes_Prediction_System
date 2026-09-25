@@ -367,6 +367,52 @@ outputs/feature_importance.csv
 
 ---
 
+# 🔎 Explainable AI
+
+The project uses **SHAP (SHapley Additive exPlanations)** to provide an interpretable view of the Random Forest model.
+
+SHAP estimates how strongly individual features contribute to the model's predictions. The analysis helps explain model behavior instead of treating the prediction as a black box.
+
+## Top SHAP Features
+
+The current SHAP analysis was performed on a sample of 500 cleaned records.
+
+| Rank | Feature | Mean Absolute SHAP |
+|---:|---|---:|
+| 1 | BMI | 0.081732 |
+| 2 | HighBP | 0.074940 |
+| 3 | GenHlth | 0.071914 |
+| 4 | HighChol | 0.049060 |
+| 5 | Age | 0.044586 |
+| 6 | Income | 0.036502 |
+| 7 | PhysHlth | 0.029346 |
+| 8 | Education | 0.026476 |
+| 9 | DiffWalk | 0.024685 |
+| 10 | MentHlth | 0.024667 |
+| 11 | HeartDiseaseorAttack | 0.018647 |
+| 12 | Sex | 0.018292 |
+| 13 | Smoker | 0.014333 |
+| 14 | Fruits | 0.013622 |
+| 15 | PhysActivity | 0.012961 |
+
+### SHAP Feature Importance
+
+![SHAP Feature Importance](outputs/shap_feature_importance.png)
+
+### SHAP Summary Plot
+
+![SHAP Summary](outputs/shap_summary.png)
+
+The SHAP values describe the contribution of features to model predictions. They should not be interpreted as evidence that a feature causes diabetes.
+
+The complete SHAP feature-importance results are available in:
+
+```text
+outputs/shap_feature_importance.csv
+```
+
+---
+
 # 🌐 Web Application
 
 The Flask application accepts the available health and lifestyle indicators through an interactive form.
