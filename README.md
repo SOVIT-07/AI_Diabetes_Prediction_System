@@ -668,21 +668,17 @@ It can be presented as:
 
 # 📸 Screenshots
 
-When you are ready, add a `screenshots/` folder and include application screenshots such as:
+## 📝 Prediction Form
 
-```text
-screenshots/
-├── home-page.png
-├── prediction-form.png
-├── prediction-result.png
-└── model-output.png
-```
+The web application provides an interactive form for entering the health and lifestyle features used by the Machine Learning model.
 
-Then display them in Markdown:
-
-```markdown
 ![Prediction Form](screenshots/prediction-form.png)
-```
+
+## 📊 Prediction Result
+
+After submitting the input values, the application displays the predicted diabetes-risk result, model probability, and configured decision threshold.
+
+![Prediction Result](screenshots/prediction-result.png)
 
 ---
 
