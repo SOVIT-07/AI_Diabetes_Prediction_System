@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AI Diabetes Prediction System
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+
+        <h1>
+            AI-Based Diabetes Prediction System
+        </h1>
+
+        <p>
+            Machine-learning based diabetes risk prediction
+        </p>
+
+    </header>
+
+
+    {% if error %}
+
+        <div class="error">
+
+            {{ error }}
+
+        </div>
+
+    {% endif %}
+
+
+    {% if result %}
+
+        <div class="prediction-card">
+
+            <h2>
+                Prediction Result
+            </h2>
+
+            {% if result.prediction == 1 %}
+
+                <div class="prediction diabetic">
+
+                    Potential Diabetes Risk
+
+                </div>
+
+            {% else %}
+
+                <div class="prediction non-diabetic">
+
+                    Lower Predicted Risk
+
+                </div>
+
+            {% endif %}
+
+
+            <p>
+
+                Model probability:
+
+                <strong>
+                    {{ "%.2f"|format(result.probability * 100) }}%
+                </strong>
+
+            </p>
+
+
+            <p>
+
+                Decision threshold:
+
+                <strong>
+                    {{ "%.2f"|format(result.threshold * 100) }}%
+                </strong>
+
+            </p>
+
+        </div>
+
+    {% endif %}
+
+
+    <form method="POST">
+
+        <h2>
+            Patient Health Information
+        </h2>
+
+
+        <div class="form-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    High Blood Pressure
+                </label>
+
+                <select name="HighBP" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    High Cholesterol
+                </label>
+
+                <select name="HighChol" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Cholesterol Check
+                </label>
+
+                <select name="CholCheck" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    BMI
+                </label>
+
+                <input
+                    type="number"
+                    name="BMI"
+                    min="1"
+                    max="100"
+                    step="0.1"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Smoker
+                </label>
+
+                <select name="Smoker" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Stroke History
+                </label>
+
+                <select name="Stroke" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Heart Disease / Attack
+                </label>
+
+                <select
+                    name="HeartDiseaseorAttack"
+                    required
+                >
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Physical Activity
+                </label>
+
+                <select name="PhysActivity" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Fruits Consumption
+                </label>
+
+                <select name="Fruits" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Vegetables Consumption
+                </label>
+
+                <select name="Veggies" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Heavy Alcohol Consumption
+                </label>
+
+                <select
+                    name="HvyAlcoholConsump"
+                    required
+                >
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Healthcare Coverage
+                </label>
+
+                <select
+                    name="AnyHealthcare"
+                    required
+                >
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Unable to Afford Doctor
+                </label>
+
+                <select
+                    name="NoDocbcCost"
+                    required
+                >
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    General Health (1-5)
+                </label>
+
+                <input
+                    type="number"
+                    name="GenHlth"
+                    min="1"
+                    max="5"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mental Health Days (0-30)
+                </label>
+
+                <input
+                    type="number"
+                    name="MentHlth"
+                    min="0"
+                    max="30"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Physical Health Days (0-30)
+                </label>
+
+                <input
+                    type="number"
+                    name="PhysHlth"
+                    min="0"
+                    max="30"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Difficulty Walking
+                </label>
+
+                <select name="DiffWalk" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        No
+                    </option>
+
+                    <option value="1">
+                        Yes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sex
+                </label>
+
+                <select name="Sex" required>
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option value="0">
+                        Female
+                    </option>
+
+                    <option value="1">
+                        Male
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Age Category (1-13)
+                </label>
+
+                <input
+                    type="number"
+                    name="Age"
+                    min="1"
+                    max="13"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Education Level (1-6)
+                </label>
+
+                <input
+                    type="number"
+                    name="Education"
+                    min="1"
+                    max="6"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Income Level (1-8)
+                </label>
+
+                <input
+                    type="number"
+                    name="Income"
+                    min="1"
+                    max="8"
+                    required
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <button type="submit">
+
+            Predict Diabetes Risk
+
+        </button>
+
+    </form>
+
+
+    <footer>
+
+        <p>
+            Educational/research project only.
+        </p>
+
+        <p>
+            This prediction is not a medical diagnosis.
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
