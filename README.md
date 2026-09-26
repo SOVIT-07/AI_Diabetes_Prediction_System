@@ -721,7 +721,6 @@ Possible future improvements include:
 - Hyperparameter tuning
 - Cross-validation
 - Comparison with Logistic Regression, XGBoost, SVM, and other classifiers
-- Explainable AI using SHAP
 - Probability calibration
 - Improved imbalance-handling strategies
 - Prediction history
